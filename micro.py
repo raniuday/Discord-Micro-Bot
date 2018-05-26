@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands
-#from discord import ActivityType, Activity
+from discord import ActivityType, Activity
 import asyncio
+import os
 
 bot = commands.Bot(command_prefix=["mm!    ","mm!   ","mm!  ","mm! ","mm!","micro ","Micro "] ,description="Micro Bot")
 
@@ -12,10 +13,8 @@ async def hello(ctx):
 @bot.command()
 async def ping(ctx):
     '''pings the bot'''
-    t = await ctx.send('Pong!')
-    ctx.message = await ctx.channel.get_message(ctx.message.id)
-    ms = (ctx.message.created_at-ctx.message.edited_at).total_seconds() * 1000
-    await bot.edit_message(t, new_content='Hearing! Took: {}ms'.format(int(ms)))
+    await ctx.send(':ping_pong: Pong!')
+    
 
 
 ##################################################################
