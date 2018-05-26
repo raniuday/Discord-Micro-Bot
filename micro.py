@@ -41,7 +41,7 @@ async def emojis(ctx):
         for emote in emojis:
             emojistr +=' '+str(emote)+' '
     ctx.send(emojistr)
-@bot.add_command(emojis)
+
 ##################################################################
 @bot.event
 async def on_ready():
