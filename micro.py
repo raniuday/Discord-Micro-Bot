@@ -35,7 +35,7 @@ async def serverinfo(ctx):
     rolestr=''
     for role in roles:
         rolestr += role.name+','
-    em.add_field(name="**Roles**" ,value=roleslist)
+    em.add_field(name="**Roles**" ,value=rolestr)
     await ctx.send(embed=em)
 
 ##################################################################
