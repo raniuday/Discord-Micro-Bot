@@ -23,6 +23,15 @@ async def serverinfo(ctx):
     em.add_field(name="**Owner**", value=ctx.guild.owner.name)
     em.add_field(name="**Server Created on**", value=ctx.guild.created_at)
     em.add_field(name="**Member Count**", value=ctx.guild.member_count)
+    em.add_field(name="**Server Emojis**", value=str(len(ctx.guild.emojis)))
+    roles=ctx.guild.roles
+    rolestr=''
+    for role in roles:
+        rolestr += role.name+','
+    em.add_field(name="**Roles**" ,value=rolestr)
+    await ctx.send(embed=em)
+@bot.command()
+async def emojis(ctx):
     emojistr=''
     emojis=ctx.guild.emojis
     if len(emojis) == 0 :
@@ -30,14 +39,7 @@ async def serverinfo(ctx):
     else:
         for emote in emojis:
             emojistr +=' '+str(emote)+' '
-    em.add_field(name="**Server Emojis**", value=emojistr)
-    roles=ctx.guild.roles
-    rolestr=''
-    for role in roles:
-        rolestr += role.name+','
-    em.add_field(name="**Roles**" ,value=rolestr)
-    await ctx.send(embed=em)
-
+    ctx.send(emojistr)
 ##################################################################
 @bot.event
 async def on_ready():
