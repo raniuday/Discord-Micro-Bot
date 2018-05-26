@@ -17,6 +17,7 @@ async def ping(ctx):
 
 @bot.command()
 async def serverinfo(ctx):
+    '''server info 
     em=discord.Embed(colour=discord.Colour(0xf1c40f))
     em.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
     em.set_thumbnail(url=ctx.guild.icon_url)
@@ -24,6 +25,7 @@ async def serverinfo(ctx):
     em.add_field(name="**Server Created on**", value=ctx.guild.created_at)
     em.add_field(name="**Member Count**", value=ctx.guild.member_count)
     em.add_field(name="**Server Emojis**", value=str(len(ctx.guild.emojis)))
+    em.add_field(name="**You joined on **",value=str(ctx.author.joined_at))
     roles=ctx.guild.roles
     rolestr=''
     for role in roles:
@@ -33,6 +35,7 @@ async def serverinfo(ctx):
 
 @bot.command()
 async def emojis(ctx):
+    '''Display local emojis'''
     emojistr=''
     emojis=ctx.guild.emojis
     if len(emojis) == 0 :
@@ -41,6 +44,7 @@ async def emojis(ctx):
         for emote in emojis:
             emojistr +=' '+str(emote)+' '
     await ctx.send(emojistr)
+
 
 ##################################################################
 @bot.event
