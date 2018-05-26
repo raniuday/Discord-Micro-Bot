@@ -46,3 +46,8 @@ async def presence_task():
         await asyncio.sleep(10)
 
 bot.loop.create_task(presence_task())
+
+
+
+
+bot.run(os.getenv('TOKEN'))
