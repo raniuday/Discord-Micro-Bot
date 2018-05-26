@@ -40,7 +40,7 @@ async def emojis(ctx):
     else:
         for emote in emojis:
             emojistr +=' '+str(emote)+' '
-    ctx.send(emojistr)
+    await ctx.send(emojistr)
 
 ##################################################################
 @bot.event
