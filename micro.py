@@ -14,8 +14,29 @@ async def hello(ctx):
 async def ping(ctx):
     '''pings the bot'''
     await ctx.send(':ping_pong: Pong!')
-    
 
+@bot.command()
+async def serverinfo(ctx):
+    em=discord.Embed(colour=discord.Colour(0xf1c40f))
+    em.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+    em.set_thumbnail(url=ctx.guild.icon_url)
+    em.add_field(name="**Owner**", value=ctx.guild.owner.name)
+    em.add_field(name="**Server Created on**", value=ctx.guild.created_at)
+    em.add_field(name="**Member Count**", value=ctx.guild.member_count)
+    emojistr=''
+    emojis=ctx.guild.emojis
+    if len(emojis) != :
+        emojistr='No Emojis available'
+    else:
+        for emote in emojis:
+            emotestr +=':'+emote.name+':'
+    em.add_field(name="**Server Emojis**", value=emojistr)
+    roles=ctx.guild.roles
+    rolestr=''
+    for role in roles:
+        rolestr += role.name+','
+    em.add_field(name="**Roles**" ,value=roleslist)
+    await ctx.send(embed=em)
 
 ##################################################################
 @bot.event
