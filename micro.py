@@ -29,7 +29,7 @@ async def serverinfo(ctx):
         emojistr='No Emojis available'
     else:
         for emote in emojis:
-            emotestr +=':'+emote.name+':'
+            emojistr +=':'+emote.name+':'
     em.add_field(name="**Server Emojis**", value=emojistr)
     roles=ctx.guild.roles
     rolestr=''
