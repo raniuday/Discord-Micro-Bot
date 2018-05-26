@@ -30,7 +30,7 @@ async def serverinfo(ctx):
         rolestr += role.name+','
     em.add_field(name="**Roles**" ,value=rolestr)
     await ctx.send(embed=em)
-@bot.add_command(emojis)
+
 @bot.command()
 async def emojis(ctx):
     emojistr=''
@@ -41,6 +41,7 @@ async def emojis(ctx):
         for emote in emojis:
             emojistr +=' '+str(emote)+' '
     ctx.send(emojistr)
+@bot.add_command(emojis)
 ##################################################################
 @bot.event
 async def on_ready():
