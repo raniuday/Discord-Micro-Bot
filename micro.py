@@ -25,7 +25,7 @@ async def serverinfo(ctx):
     em.add_field(name="**Member Count**", value=ctx.guild.member_count)
     emojistr=''
     emojis=ctx.guild.emojis
-    if len(emojis) != :
+    if len(emojis) == 0 :
         emojistr='No Emojis available'
     else:
         for emote in emojis:
