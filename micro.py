@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from discord import ActivityType, Activity
+#from discord import ActivityType, Activity
 import asyncio
 
 bot = commands.Bot(command_prefix=["mm!    ","mm!   ","mm!  ","mm! ","mm!","micro ","Micro "] ,description="Micro Bot")
@@ -28,11 +28,11 @@ async def on_ready():
 #    if str(msg.author.id) == "443961507051601931" :
 #        await bot.process_commands(msg)
 messages = [
-    (ActivityType.watching, 'Doraemon |mm!help'),
-    (ActivityType.watching, 'Phineas and Ferb|mm!help'),
-    (ActivityType.watching, 'Timon and Pumba |mm!help'),
-    (ActivityType.listening, 'mm!help'),
-    (ActivityType.playing, 'with Uday...|mm!help'),
+    (discord.ActivityType.watching, 'Doraemon |mm!help'),
+    (discord.ActivityType.watching, 'Phineas and Ferb|mm!help'),
+    (discord.ActivityType.watching, 'Timon and Pumba |mm!help'),
+    (discord.ActivityType.listening, 'mm!help'),
+    (discord.ActivityType.playing, 'with Uday...|mm!help'),
 
 ]
 
