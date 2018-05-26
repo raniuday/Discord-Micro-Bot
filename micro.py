@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import ActivityType, Activity
 import asyncio
 
-bot = commands.Bot(command_prefix=["mm!    ","mm!   ","mm!  ","mm! ","mm!","micro","Micro"] ,description="Micro Bot")
+bot = commands.Bot(command_prefix=["mm!    ","mm!   ","mm!  ","mm! ","mm!","micro ","Micro "] ,description="Micro Bot")
 
 @bot.command()
 async def hello(ctx):
