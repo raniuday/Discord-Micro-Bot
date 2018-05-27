@@ -69,7 +69,7 @@ async def on_member_update(before, after):
                 data_str="**{0}** added new nickname **{1}**".format(person,after.nick)
             else:
                 data_str="**{0}** has changed nickname **{1}** to **{2}** ".format(person,before.nick,after.nick)
-            nick_embed=dicord.Embed(title=data_str,colour=discord.Colour(0x3498db))
+            nick_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             nick_embed.set_author(name=person,icon_url=after.avatar_url)
             await channel.send(embed=nick_embed)
 
@@ -83,13 +83,13 @@ async def on_member_update(before, after):
                 data_str += "roles"
             else:
                 data_str += "role"
-            role_embed=dicord.Embed(title=data_str,colour=discord.Colour(0x3498db))
+            role_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             role_embed.set_author(name=person,icon_url=after.avatar_url)
             await channel.send(embed=role_embed)
         #Profile picture
         if before.avatar_url != after.avatar_url:
             data_str="**{0}** has changed Profile Picture".format(person)
-            pfp_embed=dicord.Embed(title=data_str,colour=discord.Colour(0x3498db))
+            pfp_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             pfp_embed.set_author(name=person,icon_url=after.avatar_url)
             pfp_embed.set_image(url=after.avatar_url)
             await channel.send(embed=_embed)
