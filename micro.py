@@ -75,7 +75,7 @@ async def on_member_update(before, after):
 
         #roles
         if len(after.roles) > len(before.roles):
-            added_roles=[i.name for i in after.roles if i not in before.nick]
+            added_roles=[i.name for i in after.roles if i not in before.roles]
             data_str="**{0}** has got ".format(person)
             for i in added_roles:
                 data_str += i
@@ -87,7 +87,7 @@ async def on_member_update(before, after):
             role_embed.set_author(name=person,icon_url=after.avatar_url)
             await tchannel.send(embed=role_embed)
         #Profile picture
-        if before.avatar_url != after.avatar_url:
+        if before.avatar != after.avatar:
             data_str="**{0}** has changed Profile Picture".format(person)
             pfp_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             pfp_embed.set_author(name=person,icon_url=after.avatar_url)
