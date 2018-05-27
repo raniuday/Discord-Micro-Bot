@@ -51,7 +51,7 @@ async def feedback(ctx,*,message : str):
     server=ctx.guild.name
     channel=ctx.channel
     em_title='{0} on "{1}->{2}" said:'.format(ctx.author,server,channel)
-    em=discord.Embed(title=em_title, decription=message,colour=discord.Colour(0x992d22))
+    em=discord.Embed(title=em_title, description=message,colour=discord.Colour(0x992d22))
     await tchannel.send(embed=em)
 
 
