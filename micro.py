@@ -56,11 +56,11 @@ async def on_member_update(before, after):
     person=before.name
     data_str=''
     #Restricting Guilds
-    if after.guild.id is 446649726578720778 or 281793428793196544:
+    if after.guild.id == 446649726578720778 or after.guild.id ==  281793428793196544:
         #Retrieving channel to post update
-        if after.guild.id is 446649726578720778:
+        if after.guild.id == 446649726578720778:
             tchannel=after.guild.get_channel(450134437691392011)
-        elif after.guild.id is 281793428793196544:
+        elif after.guild.id == 281793428793196544:
             tchannel=after.guild.get_channel(398515843102670852)
         #checking what has changed
         #nickname
