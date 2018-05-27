@@ -84,6 +84,13 @@ async def on_member_update(before, after):
             role_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             role_embed.set_author(name=person,icon_url=after.avatar_url)
             await tchannel.send(embed=role_embed)
+        #Profile picture
+        if before.avatar != after.avatar:
+            data_str="**{0}** has changed Profile Picture".format(person)
+            pfp_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
+            pfp_embed.set_author(name=person,icon_url=after.avatar_url)
+            pfp_embed.set_image(url=after.avatar_url)
+            await tchannel.send(embed=pfp_embed) 
         
 messages = [
     (discord.ActivityType.watching, 'Doraemon |mm!help'),
