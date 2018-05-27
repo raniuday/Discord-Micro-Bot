@@ -57,6 +57,7 @@ async def on_member_update(before, after):
     data_str=''
     #Restricting Guilds
     if after.guild.id == 446649726578720778 or after.guild.id ==  281793428793196544:
+        
         #Retrieving channel to post update
         if after.guild.id == 446649726578720778:
             tchannel=after.guild.get_channel(450134437691392011)
@@ -65,10 +66,7 @@ async def on_member_update(before, after):
         #checking what has changed
         #nickname
         if before.nick is not after.nick:
-            if before.nick is None:
-                data_str="**{0}** added new nickname **{1}**".format(person,after.nick)
-            else:
-                data_str="**{0}** has changed nickname **{1}** to **{2}** ".format(person,before.nick,after.nick)
+            data_str="Next time, when you see {1}, its our {0}".format(person,after.nick)
             nick_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             nick_embed.set_author(name=person,icon_url=after.avatar_url)
             await tchannel.send(embed=nick_embed)
@@ -76,23 +74,17 @@ async def on_member_update(before, after):
         #roles
         if len(after.roles) > len(before.roles):
             added_roles=[i.name for i in after.roles if i not in before.roles]
-            data_str="**{0}** has got ".format(person)
+            data_str="{0} has got ".format(person)
             for i in added_roles:
                 data_str += i
             if len(added_roles)>1:
-                data_str += "roles"
+                data_str += " roles"
             else:
-                data_str += "role"
+                data_str += " role"
             role_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             role_embed.set_author(name=person,icon_url=after.avatar_url)
             await tchannel.send(embed=role_embed)
-        #Profile picture
-        if before.avatar != after.avatar:
-            data_str="**{0}** has changed Profile Picture".format(person)
-            pfp_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
-            pfp_embed.set_author(name=person,icon_url=after.avatar_url)
-            pfp_embed.set_image(url=after.avatar_url)
-            await tchannel.send(embed=pfp_embed)
+        
 messages = [
     (discord.ActivityType.watching, 'Doraemon |mm!help'),
     (discord.ActivityType.watching, 'Phineas and Ferb|mm!help'),
