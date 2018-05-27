@@ -59,9 +59,9 @@ async def on_member_update(before, after):
     if after.guild.id is 446649726578720778 or 281793428793196544:
         #Retrieving channel to post update
         if after.guild.id is 446649726578720778:
-            channel=after.guild.get.channel(450134437691392011)
+            tchannel=after.guild.get_channel(450134437691392011)
         elif after.guild.id is 281793428793196544:
-            channel=after.guild.get.channel(398515843102670852)
+            tchannel=after.guild.get_channel(398515843102670852)
         #checking what has changed
         #nickname
         if before.nick is not after.nick:
@@ -71,7 +71,7 @@ async def on_member_update(before, after):
                 data_str="**{0}** has changed nickname **{1}** to **{2}** ".format(person,before.nick,after.nick)
             nick_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             nick_embed.set_author(name=person,icon_url=after.avatar_url)
-            await channel.send(embed=nick_embed)
+            await tchannel.send(embed=nick_embed)
 
         #roles
         if len(after.roles) > len(before.roles):
@@ -85,14 +85,14 @@ async def on_member_update(before, after):
                 data_str += "role"
             role_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             role_embed.set_author(name=person,icon_url=after.avatar_url)
-            await channel.send(embed=role_embed)
+            await tchannel.send(embed=role_embed)
         #Profile picture
         if before.avatar_url != after.avatar_url:
             data_str="**{0}** has changed Profile Picture".format(person)
             pfp_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             pfp_embed.set_author(name=person,icon_url=after.avatar_url)
             pfp_embed.set_image(url=after.avatar_url)
-            await channel.send(embed=_embed)
+            await tchannel.send(embed=pfp_embed)
 messages = [
     (discord.ActivityType.watching, 'Doraemon |mm!help'),
     (discord.ActivityType.watching, 'Phineas and Ferb|mm!help'),
