@@ -50,7 +50,7 @@ async def feedback(ctx,*,message : str):
     tchannel=bot.get_guild(446649726578720778).get_channel(450297549006307329)
     server=ctx.guild.name
     channel=ctx.channel
-    em_title="{0} on "{1}->{2}" said:".format(ctx.author,server,channel)
+    em_title='{0} on "{1}->{2}" said:'.format(ctx.author,server,channel)
     em=discord.Embed(title=em_title, decription=message,colour=discord.Colour(0x992d22))
     await tchannel.send(embed=em)
 
