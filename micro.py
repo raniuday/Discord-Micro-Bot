@@ -35,7 +35,7 @@ async def serverinfo(ctx):
 
 @bot.command()
 async def emojis(ctx):
-    '''Display local emojis'''
+    """Display local emojis"""
     emojistr=''
     emojis=ctx.guild.emojis
     if len(emojis) == 0 :
