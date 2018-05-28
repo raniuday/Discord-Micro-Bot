@@ -76,6 +76,7 @@ async def on_member_update(before, after):
         #checking what has changed
         #nickname
         if before.nick is not after.nick:
+            if after.nick == None : pass
             data_str="Next time, when you see {1}, its our {0}".format(person,after.nick)
             nick_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             nick_embed.set_author(name=person,icon_url=after.avatar_url)
