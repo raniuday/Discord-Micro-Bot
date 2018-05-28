@@ -69,10 +69,10 @@ async def on_member_update(before, after):
     if after.guild.id == 446649726578720778 or after.guild.id ==  281793428793196544:
         
         #Retrieving channel to post update
-        if after.guild.id == 446649726578720778:
+        if after.guild.id == 446649726578720778:    #Micro`s birth place
             tchannel=after.guild.get_channel(450134437691392011)
-        elif after.guild.id == 281793428793196544:
-            tchannel=after.guild.get_channel(398515843102670852)
+        elif after.guild.id == 281793428793196544:   #IU United 
+            tchannel=after.guild.get_channel(450341762536308736)
         #checking what has changed
         #nickname
         if before.nick is not after.nick:
@@ -96,11 +96,12 @@ async def on_member_update(before, after):
             await tchannel.send(embed=role_embed)
         #Profile picture
         if before.avatar != after.avatar:
-            data_str="**{0}** has changed Profile Picture".format(person)
-            pfp_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
-            pfp_embed.set_author(name=person,icon_url=after.avatar_url)
-            pfp_embed.set_image(url=after.avatar_url)
-            await tchannel.send(embed=pfp_embed) 
+            if tchannel == 450341762536308736 :
+                data_str="**{0}** has changed Profile Picture".format(person)
+                pfp_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
+                pfp_embed.set_author(name=person,icon_url=after.avatar_url)
+                pfp_embed.set_image(url=after.avatar_url)
+                await tchannel.send(embed=pfp_embed) 
         
 messages = [
     (discord.ActivityType.watching, 'Doraemon |mm!help'),
