@@ -104,7 +104,7 @@ async def on_member_update(before, after):
                 await tchannel.send(embed=pfp_embed) 
 @bot.event
 async def on_message_delete(msg):
-    if msg.guild.id == 446649726578720778 :
+    if msg.guild.id == 281793428793196544 :
         tchannel= msg.guild.get_channel(450997458600984586)
         desc=msg.content
         em=discord.Embed(title="Message Delete detected in {0}".format(msg.channel.name))
