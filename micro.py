@@ -102,7 +102,15 @@ async def on_member_update(before, after):
                 pfp_embed.set_author(name=person,icon_url=after.avatar_url)
                 pfp_embed.set_image(url=after.avatar_url)
                 await tchannel.send(embed=pfp_embed) 
-        
+@bot.event
+async def on_message_delete(msg):
+    if msg.guild.id == 446649726578720778 :
+        tchannel= msg.guild.get_channel(450997458600984586)
+        desc=msg.content
+        em=discord.Embed(title="Message Delete detected in {0}".format(msg.channel.name))
+        em.add_field(name="**content of deleted message**",value=desc)
+        await tchannel.send(embed=em)
+                
 messages = [
     (discord.ActivityType.watching, 'Doraemon |mm!help'),
     (discord.ActivityType.watching, 'Phineas and Ferb|mm!help'),
