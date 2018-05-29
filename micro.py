@@ -110,6 +110,7 @@ async def on_message_delete(msg):
         em=discord.Embed(title="Message Delete detected in {0}".format(msg.channel.name))
         em.add_field(name="Author:",value=msg.author)
         em.add_field(name="Content of deleted message",value=desc)
+        em.add_field(name="Created on:",value=msg.created_at)
         await tchannel.send(embed=em)
                 
 messages = [
