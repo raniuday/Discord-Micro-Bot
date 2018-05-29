@@ -108,7 +108,8 @@ async def on_message_delete(msg):
         tchannel= msg.guild.get_channel(450997458600984586)
         desc=msg.content
         em=discord.Embed(title="Message Delete detected in {0}".format(msg.channel.name))
-        em.add_field(name="**content of deleted message**",value=desc)
+        em.add_field(name="Author:",value=msg.author)
+        em.add_field(name="Content of deleted message",value=desc)
         await tchannel.send(embed=em)
                 
 messages = [
