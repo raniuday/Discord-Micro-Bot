@@ -67,7 +67,7 @@ async def rolelist(ctx,*,role_name):
             for member in member_list:
                 members += emoji+member.name+'\n'
             if len(members)> 2048:
-                await ctx.send("Sorry! {0} names can`t fit here".format(Str(len(member_list))))
+                await ctx.send("Sorry! {0} names can`t fit here".format(str(len(member_list))))
                 return
             em.description = members
             em.set_footer(text="Rquested by {0}".format(ctx.author.name))
