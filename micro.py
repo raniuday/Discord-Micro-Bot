@@ -59,7 +59,7 @@ async def rolelist(ctx,*,role_name):
     To avoid unnecessary mentions, this command only takes name, mention wouldn`t work.'''
     for role in ctx.guild.roles:
         if role.name.lower() == role_name.lower() :
-            member_list = ctx.guild.role.members
+            member_list = role.members
             em=discord.Embed(title='Member(s) with {0} role in this server'.format(role.name))
             em.colour = role.colour
             emoji= ':diamond_shape_with_a_dot_inside:'
