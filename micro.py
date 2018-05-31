@@ -57,13 +57,13 @@ async def feedback(ctx,*,message : str):
 async def rolelist(ctx,*,role_name):
     '''Displays the members with specified role.
     To avoid unnecessary mentions, this command only takes name, mention wouldn`t work.'''
-    if role_name == '@everyone' or 'everyone' :
+    if role_name.lower() == '@everyone' or 'everyone' :
         msg = await ctx.send('Try with other role...')
         await asyncio.sleep(3)
         msg.delete()
         return
     for role in ctx.guild.roles:
-        if role.name == role_name :
+        if role.name.lower() == role_name.lower() :
             member_list = ctx.guild.role.members
             em=discord.Embed(title='Member(s) with {0} role in this server'.format(role.name))
             em.colour = role.colour
