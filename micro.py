@@ -82,6 +82,10 @@ async def rolelist(ctx,*,role_name):
 
 ##################################################################
 @bot.event
+async def on_message_edit(before, after):
+  await bot.process_commands(after)
+
+@bot.event
 async def on_ready():
     print("I'm ready!")
     bot.load_extension("REPL")
