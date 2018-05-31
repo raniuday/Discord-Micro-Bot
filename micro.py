@@ -53,6 +53,32 @@ async def feedback(ctx,*,message : str):
     em_title='{0} on "{1}->{2}" said:'.format(ctx.author,server,channel)
     em=discord.Embed(title=em_title, description=message,colour=discord.Colour(0x992d22))
     await tchannel.send(embed=em)
+@bot.command()
+async def rolelist(ctx,*,role_name):
+    '''Displays the members with specified role.
+    To avoid unnecessary mentions, this command only takes name, mention wouldn`t work.'''
+    if role_name == '@everyone' or 'everyone' :
+        msg = await ctx.send('Try with other role...')
+        await asyncio.sleep(3)
+        msg.delete()
+        return
+    for role in ctx.guild.roles:
+        if role.name == role_name :
+            member_list = ctx.guild.role.members
+            em=discord.Embed(title='Member(s) with {0} role in this server'.format(role.name))
+            em.colour = role.colour
+            emoji= ':diamond_shape_with_a_dot_inside:'
+            members=''
+            for member in member_list:
+                members += emoji+member.name+'\n'
+            em.description = members
+            em.set_footer("Rquested by {0}".format(ctx.author.name)
+            await ctx.send(embed=em)
+            return
+    msg=await ctx.send("Enter a valid role.\n Make sure that you enter **name** of the role but don`t mention it.")
+    await asyncio.sleep(4)
+    msg.delete()
+    return
 
 
 
