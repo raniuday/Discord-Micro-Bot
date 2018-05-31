@@ -72,7 +72,7 @@ async def rolelist(ctx,*,role_name):
             for member in member_list:
                 members += emoji+member.name+'\n'
             em.description = members
-            em.set_footer("Rquested by {0}".format(ctx.author.name)
+            em.set_footer("Rquested by {0}".format(ctx.author.name))
             await ctx.send(embed=em)
             return
     msg=await ctx.send("Enter a valid role.\n Make sure that you enter **name** of the role but don`t mention it.")
