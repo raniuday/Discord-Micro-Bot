@@ -17,7 +17,7 @@ async def ping(ctx):
 
 @bot.command()
 async def serverinfo(ctx):
-    '''server info 
+    '''server info '''
     em=discord.Embed(colour=discord.Colour(0xf1c40f))
     em.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
     em.set_thumbnail(url=ctx.guild.icon_url)
