@@ -3,21 +3,35 @@ from discord.ext import commands
 from discord import ActivityType, Activity
 import asyncio
 import os
+from datetime import datetime
 
 bot = commands.Bot(command_prefix=["mm!    ","mm!   ","mm!  ","mm! ","mm!","micro ","Micro "] ,description="Micro Bot")
+bot.launch_time = datetime.utcnow()
+
+@bot.command()
+async def uptime(ctx):
+    '''Micro's uptime'''
+    delta_uptime = datetime.utcnow() - bot.launch_time
+    hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
+    minutes, seconds = divmod(remainder, 60)
+    days, hours = divmod(hours, 24)
+    await ctx.send(f"{days}d, {hours}h, {minutes}m, {seconds}s")
 
 @bot.command()
 async def hello(ctx):
     '''says hello to you'''
     await ctx.send("Hello {0}".format(ctx.message.author.mention))
+
 @bot.command()
 async def ping(ctx):
-    '''pings the bot'''
-    await ctx.send(':ping_pong: Pong!')
+    '''Pong! check whether Micro is breathing or not'''
+    resp = await ctx.send('Pong! Loading...')
+    diff = resp.created_at - ctx.message.created_at
+    await resp.edit(content=f'Pong! That took {1000 * diff.total_seconds():.1f}ms.')
 
 @bot.command()
 async def serverinfo(ctx):
-    '''server info '''
+    '''current server info '''
     em=discord.Embed(colour=discord.Colour(0xf1c40f))
     em.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
     em.set_thumbnail(url=ctx.guild.icon_url)
@@ -35,7 +49,7 @@ async def serverinfo(ctx):
 
 @bot.command()
 async def emojis(ctx):
-    """Display local emojis"""
+    """Display the current server's local emojis"""
     emojistr=''
     emojis=ctx.guild.emojis
     if len(emojis) == 0 :
@@ -95,15 +109,15 @@ async def on_member_update(before, after):
     data_str=''
     #Restricting Guilds
     if after.guild.id == 446649726578720778 or after.guild.id ==  281793428793196544:
-        
+
         #Retrieving channel to post update
         if after.guild.id == 446649726578720778:    #Micro`s birth place
             tchannel=after.guild.get_channel(450134437691392011)
-        elif after.guild.id == 281793428793196544:   #IU United 
+        elif after.guild.id == 281793428793196544:   #IU United
             tchannel=after.guild.get_channel(450341762536308736)
         #checking what has changed
         #nickname
-        if before.nick is not after.nick and after.nick != None :             
+        if before.nick is not after.nick and after.nick != None :
             data_str="Next time, when you see {1}, its our {0}".format(person,after.nick)
             nick_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             nick_embed.set_author(name=person,icon_url=after.avatar_url)
@@ -129,7 +143,7 @@ async def on_member_update(before, after):
                 pfp_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
                 pfp_embed.set_author(name=person,icon_url=after.avatar_url)
                 pfp_embed.set_image(url=after.avatar_url)
-                await tchannel.send(embed=pfp_embed) 
+                await tchannel.send(embed=pfp_embed)
 @bot.event
 async def on_message_delete(msg):
     if msg.author.bot :
@@ -142,7 +156,7 @@ async def on_message_delete(msg):
         em.add_field(name="Content of deleted message",value=desc)
         em.add_field(name="Created on:",value=msg.created_at)
         await tchannel.send(embed=em)
-                
+
 messages = [
     (discord.ActivityType.watching, 'Doraemon |mm!help'),
     (discord.ActivityType.watching, 'Phineas and Ferb|mm!help'),
