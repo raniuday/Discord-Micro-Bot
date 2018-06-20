@@ -27,7 +27,7 @@ async def ping(ctx):
     '''Pong! check whether Micro is breathing or not'''
     resp = await ctx.send('Pong! Loading...')
     diff = resp.created_at - ctx.message.created_at
-    await resp.edit(content=f'Pong! That took {1000 * diff.total_seconds():.1f}ms.')
+    await resp.edit(content=f':champagne: Cheers! That took {1000 * diff.total_seconds():.1f}ms.')
 
 @bot.command()
 async def serverinfo(ctx):
