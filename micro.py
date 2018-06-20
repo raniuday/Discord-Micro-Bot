@@ -15,7 +15,7 @@ async def uptime(ctx):
     hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
     minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
-    await ctx.send(f"{days}d, {hours}h, {minutes}m, {seconds}s")
+    await ctx.send(f"Micro is online since {days}d, {hours}h, {minutes}m, {seconds}s")
 
 @bot.command()
 async def hello(ctx):
