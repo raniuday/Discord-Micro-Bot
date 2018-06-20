@@ -103,6 +103,7 @@ async def on_message_edit(before, after):
 async def on_ready():
     print("I'm ready!")
     bot.load_extension("REPL")
+    await bot.get_channel(449863094290612224).send(f"Bot reawakened at {datetime.now(): %B %d, %Y at %H:%M:%S GMT}")
 @bot.event
 async def on_member_update(before, after):
     person=before.name
@@ -117,7 +118,7 @@ async def on_member_update(before, after):
             tchannel=after.guild.get_channel(450341762536308736)
         #checking what has changed
         #nickname
-        if before.nick is not after.nick and after.nick != None :
+        if before.nick is not after.nick and after.nick is not None :
             data_str="Next time, when you see {1}, its our {0}".format(person,after.nick)
             nick_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
             nick_embed.set_author(name=person,icon_url=after.avatar_url)
