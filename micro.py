@@ -147,12 +147,12 @@ async def on_member_update(before, after):
                 await tchannel.send(embed=pfp_embed)
 @bot.event
 async def on_message_delete(msg):
-    if msg.author.bot:
-        return
     if msg.guild.id == 281793428793196544:
         if msg.channel.id == 450997458600984586:
             await bot.get_user(270898185961078785).send("```" +msg.content + "```")
             await bot.get_user(443961507051601931).send("```" +msg.content + "```")
+        if msg.author.bot:
+            return
         tchannel= msg.guild.get_channel(450997458600984586)
         notification="""**Message Deleted**
         ```
