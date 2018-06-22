@@ -149,20 +149,21 @@ async def on_member_update(before, after):
 async def on_message_delete(msg):
     if msg.guild.id == 281793428793196544:
         if msg.channel.id == 450997458600984586:
-            await bot.get_user(270898185961078785).send("```" +msg.content + "```")
-            await bot.get_user(443961507051601931).send("```" +msg.content + "```")
-        if msg.author.bot:
-            return
-        tchannel= msg.guild.get_channel(450997458600984586)
-        notification="""**Message Deleted**
-        ```
-        Author     :: {0}
-        Content    :: {1}
-        Created on :: {2}
-        Channel    :: {3}
-        ```
-        """.format(msg.author, msg.content, msg.created_at, msg.channel.name)
-        await tchannel.send(notification)
+            await bot.get_user(270898185961078785).send(msg.content)
+            await bot.get_user(443961507051601931).send(msg.content)
+        else:
+            if msg.author.bot:
+                return
+            tchannel= msg.guild.get_channel(450997458600984586)
+            notification="""**Message Deleted**
+            ```
+            Author     :: {0}
+            Content    :: {1}
+            Created on :: {2}
+            Channel    :: {3}
+            ```
+            """.format(msg.author, msg.content, msg.created_at, msg.channel.name)
+            await tchannel.send(notification)
 
 messages = [
     (discord.ActivityType.watching, 'Doraemon |mm!help'),
