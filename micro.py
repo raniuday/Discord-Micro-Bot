@@ -112,27 +112,27 @@ async def on_member_update(before, after):
     channel=before.guild.name + '_timeline'
     if channel in gvars.vars.keys:
         tchannel=bot.get_channel(gvars.vars[channel])
-    #checking what has changed
-    #nickname
-    if before.nick is not after.nick and after.nick is not None :
-        data_str="Next time, when you see {1}, its our {0}".format(person,after.nick)
-        nick_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
-        nick_embed.set_author(name=person,icon_url=after.avatar_url)
-        await tchannel.send(embed=nick_embed)
+        #checking what has changed
+        #nickname
+        if before.nick is not after.nick and after.nick is not None :
+            data_str="Next time, when you see {1}, its our {0}".format(person,after.nick)
+            nick_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
+            nick_embed.set_author(name=person,icon_url=after.avatar_url)
+            await tchannel.send(embed=nick_embed)
 
-    #roles
-    if len(after.roles) > len(before.roles):
-        added_roles=[i.name for i in after.roles if i not in before.roles]
-        data_str="{0} has got ".format(person)
-        for i in added_roles:
-            data_str += i
-        if len(added_roles)>1:
-            data_str += " roles"
-        else:
-            data_str += " role"
-        role_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
-        role_embed.set_author(name=person,icon_url=after.avatar_url)
-        await tchannel.send(embed=role_embed)
+        #roles
+        if len(after.roles) > len(before.roles):
+            added_roles=[i.name for i in after.roles if i not in before.roles]
+            data_str="{0} has got ".format(person)
+            for i in added_roles:
+                data_str += i
+            if len(added_roles)>1:
+                data_str += " roles"
+            else:
+                data_str += " role"
+            role_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
+            role_embed.set_author(name=person,icon_url=after.avatar_url)
+            await tchannel.send(embed=role_embed)
     '''#Profile picture
     if before.avatar != after.avatar:
         if tchannel == 450341762536308736 :
