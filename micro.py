@@ -4,6 +4,7 @@ from discord import ActivityType, Activity
 import asyncio
 import os
 from datetime import datetime
+import gvars
 
 bot = commands.Bot(command_prefix=["mm!    ","mm!   ","mm!  ","mm! ","mm!","micro ","Micro "] ,description="Micro Bot")
 bot.launch_time = datetime.utcnow()
@@ -108,43 +109,37 @@ async def on_ready():
 async def on_member_update(before, after):
     person=before.name
     data_str=''
-    #Restricting Guilds
-    if after.guild.id == 446649726578720778 or after.guild.id ==  281793428793196544:
+    channel=before.guild.name + '_timeline'
+    tchannel=bot.get_channel(gvars.vars[channel])
+    #checking what has changed
+    #nickname
+    if before.nick is not after.nick and after.nick is not None :
+        data_str="Next time, when you see {1}, its our {0}".format(person,after.nick)
+        nick_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
+        nick_embed.set_author(name=person,icon_url=after.avatar_url)
+        await tchannel.send(embed=nick_embed)
 
-        #Retrieving channel to post update
-        if after.guild.id == 446649726578720778:    #Micro`s birth place
-            tchannel=after.guild.get_channel(450134437691392011)
-        elif after.guild.id == 281793428793196544:   #IU United
-            tchannel=after.guild.get_channel(450341762536308736)
-        #checking what has changed
-        #nickname
-        if before.nick is not after.nick and after.nick is not None :
-            data_str="Next time, when you see {1}, its our {0}".format(person,after.nick)
-            nick_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
-            nick_embed.set_author(name=person,icon_url=after.avatar_url)
-            await tchannel.send(embed=nick_embed)
-
-        #roles
-        if len(after.roles) > len(before.roles):
-            added_roles=[i.name for i in after.roles if i not in before.roles]
-            data_str="{0} has got ".format(person)
-            for i in added_roles:
-                data_str += i
-            if len(added_roles)>1:
-                data_str += " roles"
-            else:
-                data_str += " role"
-            role_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
-            role_embed.set_author(name=person,icon_url=after.avatar_url)
-            await tchannel.send(embed=role_embed)
-        #Profile picture
-        if before.avatar != after.avatar:
-            if tchannel == 450341762536308736 :
-                data_str="**{0}** has changed Profile Picture".format(person)
-                pfp_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
-                pfp_embed.set_author(name=person,icon_url=after.avatar_url)
-                pfp_embed.set_image(url=after.avatar_url)
-                await tchannel.send(embed=pfp_embed)
+    #roles
+    if len(after.roles) > len(before.roles):
+        added_roles=[i.name for i in after.roles if i not in before.roles]
+        data_str="{0} has got ".format(person)
+        for i in added_roles:
+            data_str += i
+        if len(added_roles)>1:
+            data_str += " roles"
+        else:
+            data_str += " role"
+        role_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
+        role_embed.set_author(name=person,icon_url=after.avatar_url)
+        await tchannel.send(embed=role_embed)
+    '''#Profile picture
+    if before.avatar != after.avatar:
+        if tchannel == 450341762536308736 :
+            data_str="**{0}** has changed Profile Picture".format(person)
+            pfp_embed=discord.Embed(title=data_str,colour=discord.Colour(0x3498db))
+            pfp_embed.set_author(name=person,icon_url=after.avatar_url)
+            pfp_embed.set_image(url=after.avatar_url)
+            await tchannel.send(embed=pfp_embed)'''
 @bot.event
 async def on_message_delete(msg):
     if msg.guild.id == 281793428793196544:
@@ -164,6 +159,7 @@ async def on_message_delete(msg):
             ```
             """.format(msg.author, msg.content, msg.created_at, msg.channel.name)
             await tchannel.send(notification)
+
 
 messages = [
     (discord.ActivityType.watching, 'Doraemon |mm!help'),
