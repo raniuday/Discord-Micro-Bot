@@ -161,6 +161,22 @@ async def on_message_delete(msg):
             """.format(msg.author, msg.content, msg.created_at, msg.channel.name)
             await tchannel.send(notification)
 
+@bot.event
+async def on_member_join(member):
+    channel = member.guild.name+'_welcome'
+    if channel in gvars.vars.keys():
+        tchannel= bot.get_channel(gvars.vars[channel])
+        welcome_msg=f"Hello {member.mention},Welcome to **{member.guild.name}** Hope you will have a great time here! Don't forget to check #rules"
+        tchannel.send(welcome_msg)
+
+@bot.event
+async def on_member_remove(member):
+    channel = member.guild.name+'_welcome'
+    if channel in gvars.vars.keys():
+        tchannel= bot.get_channel(gvars.vars[channel])
+        welcome_msg=f"{member.name} has just left!"
+        tchannel.send(welcome_msg)
+
 
 messages = [
     (discord.ActivityType.watching, 'Doraemon |mm!help'),
