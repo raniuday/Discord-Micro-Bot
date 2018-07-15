@@ -110,7 +110,7 @@ async def on_member_update(before, after):
     person=before.name
     data_str=''
     channel=before.guild.name + '_timeline'
-    if channel in gvars.vars.keys:
+    if channel in gvars.vars.keys():
         tchannel=bot.get_channel(gvars.vars[channel])
         #checking what has changed
         #nickname
