@@ -42,14 +42,15 @@ class Events:
                 await tchannel.send(embed=role_embed)
 
     async def on_message_delete(self,msg):
-        if msg.guild.id == 281793428793196544:
-            if msg.channel.id == 450997458600984586:
-                await self.bot.get_user(270898185961078785).send(msg.content)
-                await self.bot.get_user(443961507051601931).send(msg.content)
-            else:
-                if msg.author.bot:
-                    return
-                tchannel= msg.guild.get_channel(450997458600984586)
+        if msg.channel.id == 450997458600984586:
+            await self.bot.get_user(270898185961078785).send(msg.content)
+            await self.bot.get_user(443961507051601931).send(msg.content)
+            return
+        elif msg.author.bot:
+            return
+        else:
+            tchannel=discord.utils.get(msg.guild.channels, name='secret')
+            if tchannel is not None:
                 notification="""**Message Deleted**
                 ```
                 Author     :: {0}
