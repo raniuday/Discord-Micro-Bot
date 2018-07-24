@@ -85,7 +85,7 @@ async def rolelist(ctx,*,role_name):
                 await ctx.send("Sorry! {0} names can`t fit here".format(str(len(member_list))))
                 return
             em.description = members
-            em.set_footer(text="Rquested by {0}".format(ctx.author.name))
+            em.set_footer(text="Requested by {0}".format(ctx.author.name))
             await ctx.send(embed=em)
             return
     msg=await ctx.send("Enter a valid role.\n Make sure that you enter **name** of the role but don`t mention it.")
