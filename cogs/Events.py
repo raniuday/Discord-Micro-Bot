@@ -43,8 +43,8 @@ class Events:
 
     async def on_message_delete(self,msg):
         if msg.channel.id == 450997458600984586:
-            await self.bot.get_user(270898185961078785).send(msg.content)
-            await self.bot.get_user(443961507051601931).send(msg.content)
+            await self.bot.get_user(270898185961078785).send(msg.content,embed=msg.embeds[0])
+            await self.bot.get_user(443961507051601931).send(msg.content,embed=msg.embeds[0])
             return
         elif msg.author.bot:
             return
@@ -57,7 +57,7 @@ class Events:
                 emb.add_field(name="Author",value=msg.author,inline=True)
                 emb.add_field(name="Channel",value=msg.channel.mention,inline=True)
                 emb.add_field(name="Content",value=msg.content,inline=False)
-                emb.set_footer(text="Created on:")
+                emb.set_footer(text="Created on:",icon_url=msg.author.avatar_url)
                 emb.timestamp=msg.created_at
                 if len(msg.attachments)>0:
                     emb.set_image(url=msg.content.attachments[0].proxy_url)
