@@ -57,7 +57,7 @@ class Events:
                 emb.add_field(name="Author",value=msg.author,inline=True)
                 emb.add_field(name="Channel",value=msg.channel.mention,inline=True)
                 emb.add_field(name="Content",value=msg.content,inline=False)
-                emb.set_footer(text=Created on:)
+                emb.set_footer(text="Created on:")
                 emb.timestamp=msg.created_at
                 if len(msg.attachments)>0:
                     emb.set_image(url=msg.content.attachments[0].proxy_url)
