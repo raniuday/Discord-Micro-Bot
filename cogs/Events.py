@@ -56,11 +56,9 @@ class Events:
                 emb=discord.Embed(title="Message deleted")
                 emb.add_field(name="Author",value=msg.author,inline=True)
                 emb.add_field(name="Channel",value=msg.channel.mention,inline=True)
-                emb.add_field(name="Content",value=msg.content,inline=False)
+                emb.add_field(name="Content",value=msg.content or "Attachments",inline=False)
                 emb.set_footer(text="Created on:",icon_url=msg.author.avatar_url)
                 emb.timestamp=msg.created_at
-                if len(msg.attachments)>0:
-                    emb.add_field(name="Attachments",value=msg.attachments[0])
                 await tchannel.send(embed=emb)
                 '''notification="""**Message Deleted**
                 ```
