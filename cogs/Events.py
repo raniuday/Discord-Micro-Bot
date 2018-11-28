@@ -60,7 +60,7 @@ class Events:
                 emb.set_footer(text="Created on:",icon_url=msg.author.avatar_url)
                 emb.timestamp=msg.created_at
                 if len(msg.attachments)>0:
-                    emb.set_image(url=msg.content.attachments[0].proxy_url)
+                    emb.set_image(url=msg.attachments[0].proxy_url)
                 await tchannel.send(embed=emb)
                 '''notification="""**Message Deleted**
                 ```
