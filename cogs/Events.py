@@ -48,10 +48,21 @@ class Events:
             return
         elif msg.author.bot:
             return
+        elif (msg.channel.name.startswith("music") or  msg.channel.name.startswith("make"))and len(msg.content) == 1:
+            return
         else:
             tchannel=discord.utils.get(msg.guild.channels, name='secret')
             if tchannel is not None:
-                notification="""**Message Deleted**
+                emb=discord.Embed(title="Message deleted")
+                emb.add_field(name="Author",value=msg.author,inline=True)
+                emb.add_field(name="Channel",value=msg.channel.mention,inline=True)
+                emb.add_field(name="Content",value=msg.content,inline=False)
+                emb.set_footer(text=Created on:)
+                emb.timestamp=msg.created_at
+                if len(msg.attachments)>0:
+                    emb.set_image(url=msg.content.attachments[0].proxy_url)
+                await tchannel.send(embed=emb)
+                '''notification="""**Message Deleted**
                 ```
                 Author     :: {0}
                 Content    :: {1}
@@ -59,7 +70,7 @@ class Events:
                 Channel    :: {3}
                 ```
                 """.format(msg.author, msg.content, msg.created_at, msg.channel.name)
-                await tchannel.send(notification)
+                await tchannel.send(notification)'''
 
     async def on_member_join(self,member):
         channel = member.guild.name+'_welcome'
