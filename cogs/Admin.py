@@ -5,7 +5,7 @@ import discord
 from discord.ext import commands
 
 
-class Admin:
+class Admin(commands.Cog):
     '''For administrative purposes'''
 
     def __init__(self, bot):
