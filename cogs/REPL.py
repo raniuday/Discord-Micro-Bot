@@ -13,7 +13,7 @@ from contextlib import redirect_stdout
 import io
 ownerid = 443961507051601931
 
-class REPL():
+class REPL(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
