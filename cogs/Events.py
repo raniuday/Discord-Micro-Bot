@@ -14,7 +14,7 @@ class Events(commands.Cog):
     async def on_message_edit(self,before, after):
         await self.bot.process_commands(after)
         
-   @commands.Cog.listener()
+    @commands.Cog.listener()
     async def on_member_update(self,before, after):
         person=before.name
         data_str=''
