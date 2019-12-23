@@ -9,10 +9,12 @@ class Events(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-
+        
+    @commands.Cog.listener()
     async def on_message_edit(self,before, after):
         await self.bot.process_commands(after)
-
+        
+   @commands.Cog.listener()
     async def on_member_update(self,before, after):
         person=before.name
         data_str=''
@@ -41,6 +43,7 @@ class Events(commands.Cog):
                 role_embed.set_author(name=person,icon_url=after.avatar_url)
                 await tchannel.send(embed=role_embed)
 
+    @commands.Cog.listener()
     async def on_message_delete(self,msg):
         if msg.channel.id == 450997458600984586:
             await self.bot.get_user(270898185961078785).send(msg.content,embed=msg.embeds[0])
@@ -69,14 +72,15 @@ class Events(commands.Cog):
                 ```
                 """.format(msg.author, msg.content, msg.created_at, msg.channel.name)
                 await tchannel.send(notification)'''
-
+                
+    @commands.Cog.listener()
     async def on_member_join(self,member):
         channel = member.guild.name+'_welcome'
         if channel in gvars.vars.keys():
             tchannel= self.bot.get_channel(gvars.vars[channel])
             welcome_msg=f"Hello {member.mention},Welcome to **{member.guild.name}** Hope you will have a great time here! Don't forget to check #rules"
             await tchannel.send(welcome_msg)
-
+    @commands.Cog.listener()
     async def on_member_remove(self,member):
         channel = member.guild.name+'_welcome'
         if channel in gvars.vars.keys():
